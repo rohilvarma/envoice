@@ -29,13 +29,15 @@ const Logo = () => {
         width={50}
         height={50}
         className="md:hidden"
+        priority
       />
       <Image
         src={resolvedTheme === "dark" ? "/dark-logo.png" : "/light-logo.png"}
         alt="Envoice App Logo"
         width={150}
-        height={50}
+        height={150}
         className="hidden md:block"
+        priority
       />
     </Link>
   );
