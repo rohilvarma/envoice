@@ -22,8 +22,8 @@ const Logo = () => {
       <Image
         src={
           resolvedTheme === "dark"
-            ? "/dark-mobile-logo.png"
-            : "/light-mobile-logo.png"
+            ? "/mobile-dark-logo.svg"
+            : "/mobile-light-logo.svg"
         }
         alt="Envoice App Logo"
         width={50}
@@ -32,10 +32,10 @@ const Logo = () => {
         priority
       />
       <Image
-        src={resolvedTheme === "dark" ? "/dark-logo.png" : "/light-logo.png"}
+        src={resolvedTheme === "dark" ? "/dark-logo.svg" : "/light-logo.svg"}
         alt="Envoice App Logo"
-        width={150}
-        height={150}
+        width={125}
+        height={125}
         className="hidden md:block"
         priority
       />
