@@ -15,13 +15,15 @@ const Navbar = async () => {
         <Logo />
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          {session?.user ? (
-            <SignoutButton />
-          ) : (
-            <Button variant="default">
-              <Link href={ROUTES.LOGIN}>Get Started</Link>
-            </Button>
-          )}
+          <div className="">
+            {session?.user ? (
+              <SignoutButton />
+            ) : (
+              <Button variant="default">
+                <Link href={ROUTES.LOGIN}>Get Started</Link>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </nav>

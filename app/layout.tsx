@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "A simple and quick way to generate and manage your business invoices.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/mobile-dark-logo.svg",
   },
 };
 
@@ -32,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative scroll-smooth`}
       >
         <ThemeProvider
           attribute="class"
@@ -40,9 +41,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <div className="container">
+          <div className="container flex">
             {children}
           </div>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
