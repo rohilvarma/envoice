@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,18 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative scroll-smooth`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative scroll-smooth overflow-y-scroll`}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           disableTransitionOnChange
         >
-          <Navbar />
-          <div className="container flex">
-            {children}
-          </div>
-          <Footer />
+          <div className="">{children}</div>
         </ThemeProvider>
       </body>
     </html>

@@ -7,27 +7,26 @@ import SignoutButton from "./SignoutButton";
 import { getServerSession } from "next-auth/next";
 import { authConfig } from "@/lib/auth";
 
-const Navbar = async () => {
+const PublicNavbar = async () => {
   const session = await getServerSession(authConfig);
+  console.log("Session status", session);
   return (
-    <nav className="border-b border-gray-600 py-4">
+    <nav className="border-b border-gray-600 py-2">
       <div className="container flex items-center justify-between">
         <Logo />
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <div className="">
-            {session?.user ? (
-              <SignoutButton />
-            ) : (
-              <Button variant="default">
-                <Link href={ROUTES.LOGIN}>Get Started</Link>
-              </Button>
-            )}
-          </div>
+          {session?.user ? (
+            <SignoutButton />
+          ) : (
+            <Button variant="default">
+              <Link href={ROUTES.LOGIN}>Get Started</Link>
+            </Button>
+          )}
         </div>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default PublicNavbar;

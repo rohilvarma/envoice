@@ -4,7 +4,7 @@ import { Copyright } from "lucide-react";
 const Footer = () => {
   const currDate = new Date().getFullYear();
   return (
-    <footer className="border-t border-gray-600 py-4 md:py-12 absolute bottom-0 left-0 right-0">
+    <footer className="border-t border-gray-600 py-4 md:py-8">
       <div className="container flex flex-col md:flex-row gap-2 items-center justify-between text-muted-foreground">
         <div className="flex items-center gap-2">
           <Copyright />
