@@ -1,4 +1,14 @@
-import { ChartColumn, LucideIcon, Users, Zap } from "lucide-react";
+import {
+  ChartColumn,
+  House,
+  LucideIcon,
+  LucideProps,
+  Receipt,
+  Settings,
+  Users,
+  Zap,
+} from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 type FeatureCard = {
   title: string;
@@ -6,10 +16,23 @@ type FeatureCard = {
   icon: LucideIcon;
 };
 
+type SidebarLinks = {
+  title: string;
+  url: string;
+  icon: ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+  >;
+};
+
 export const ROUTES = {
   LANDING: "/",
   LOGIN: "/login",
-  DASHBOARD: "/dashboard",
+  DASHBOARD: {
+    ROOT: "/dashboard",
+    INVOICES: "/dashboard/invoices",
+    CLIENTS: "/dashboard/clients",
+    SETTINGS: "/dashboard/settings",
+  },
 };
 
 export const LANDING_PAGE_CONTENT = {
@@ -45,3 +68,26 @@ export const LANDING_PAGE_CONTENT = {
     ] as FeatureCard[],
   },
 };
+
+export const SIDEBAR_LINKS = [
+  {
+    title: "Dashboard",
+    url: ROUTES.DASHBOARD.ROOT,
+    icon: House,
+  },
+  {
+    title: "Invoices",
+    url: ROUTES.DASHBOARD.INVOICES,
+    icon: Receipt,
+  },
+  {
+    title: "Clients",
+    url: ROUTES.DASHBOARD.CLIENTS,
+    icon: Users,
+  },
+  {
+    title: "Settings",
+    url: ROUTES.DASHBOARD.SETTINGS,
+    icon: Settings,
+  },
+] as SidebarLinks[];

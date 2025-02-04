@@ -13,7 +13,9 @@ const PublicNavbar = async () => {
   return (
     <nav className="border-b border-gray-600 py-2">
       <div className="container flex items-center justify-between">
-        <Logo />
+        <Link href={ROUTES.LANDING}>
+          <Logo />
+        </Link>
         <div className="flex items-center gap-2">
           <ThemeToggle />
           {session?.user ? (

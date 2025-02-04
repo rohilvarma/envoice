@@ -11,8 +11,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="mx-auto">
-      <div className="mt-6 md:mt-[10%] mx-auto">
+    <div className="mx-auto container">
+      <div className="mt-12 md:mt-[10%] mx-auto">
         <section id="hero">
           <div className="text-center max-w-5xl mx-auto">
             <h1 className="font-bold md:font-black text-3xl md:text-7xl">
@@ -30,7 +30,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id="features" className="my-64 ">
+        <section id="features" className="my-32 md:my-64">
           <div className="text-center">
             <h1 className="font-bold md:font-black text-3xl md:text-5xl max-w-5xl mx-auto">
               {LANDING_PAGE_CONTENT.FEATURES.title}
@@ -39,7 +39,7 @@ export default function Home() {
               {LANDING_PAGE_CONTENT.FEATURES.description}
             </p>
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+          <div className="mt-4 grid grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-4 max-w-3xl mx-auto">
             {LANDING_PAGE_CONTENT.FEATURES.feature_cards.map((f, index) => {
               const IconComponent = f.icon;
               return (
