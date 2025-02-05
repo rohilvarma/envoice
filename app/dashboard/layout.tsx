@@ -1,14 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
+import AppBreadcrumb from "@/components/app-breadcrumb";
 
 export default function DashboardLayout({
   children,
@@ -18,27 +11,10 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <section className="">
-        <div className="flex items-center gap-4">
-          <SidebarTrigger />
-          <Separator orientation="vertical" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-        {children}
+      <section className="w-full">
+        <AppBreadcrumb />
+        <Separator />
+        {children}  
       </section>
     </SidebarProvider>
   );

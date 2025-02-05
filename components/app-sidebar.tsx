@@ -35,10 +35,12 @@ export function AppSidebar() {
           <SidebarMenu>
             {SIDEBAR_LINKS.map((link, index) => (
               <SidebarMenuItem key={index}>
-                <SidebarMenuButton tooltip={link.title}>
-                  {link.icon && <link.icon />}
-                  <span>{link.title}</span>
-                </SidebarMenuButton>
+                <Link href={link.url} className="flex items-center gap-2">
+                  <SidebarMenuButton tooltip={link.title}>
+                    {link.icon && <link.icon />}
+                    <span>{link.title}</span>
+                  </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
