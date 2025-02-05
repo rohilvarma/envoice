@@ -1,6 +1,8 @@
+import Title from "@/components/Title"
+
 const SettingsPage = () => {
   return <div className="">
-    Settings Page
+    <Title title='Settings' />
   </div>
 }
 

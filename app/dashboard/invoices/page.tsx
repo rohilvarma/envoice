@@ -1,6 +1,8 @@
+import Title from "@/components/Title"
+
 const InvoicesPage = () => {
   return <div className="">
-    Invoices Page
+    <Title title='Invoices' />
   </div>
 }
 
