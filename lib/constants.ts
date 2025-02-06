@@ -69,6 +69,22 @@ export const LANDING_PAGE_CONTENT = {
   },
 };
 
+export const SETTINGS_PAGE_CONTENT = {
+  TITLE: 'Settings',
+  DESCRIPTION: 'Manage your account settings and preferences.',
+  COMPANY_INFO_FORM: {
+    TITLE: "Company Information",
+    DESCRIPTION: "This information will be displayed on your invoices.",
+    NAME: "Company Name",
+    ADDRESS: "Address",
+    GST_NO: "GST Number"
+  },
+  SAVE: "Save Changes",
+  DELETE: "Delete Profile",
+  DELETE_ACCOUNT_TITLE: "Delete Account",
+  DELETE_ACCOUNT_DESCRIPTION: "Once you delete your account, there is no going back. Please be certain."
+}
+
 export const SIDEBAR_LINKS = [
   {
     title: "Dashboard",
