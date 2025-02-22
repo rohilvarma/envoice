@@ -9,7 +9,6 @@ import { authConfig } from "@/lib/auth";
 
 const PublicNavbar = async () => {
   const session = await getServerSession(authConfig);
-  console.log("Session status", session);
   return (
     <nav className="border-b border-gray-600 py-2">
       <div className="container flex items-center justify-between">

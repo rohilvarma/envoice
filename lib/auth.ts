@@ -33,19 +33,23 @@ export const authConfig: NextAuthOptions = {
 
       // Adds a new user to the database.
       if (!existingUser) {
-        await db.insert(users).values({
+        const newUser = await db.insert(users).values({
           name: user.name || "No Name",
           email: user.email,
           avatarUrl: user.image,
           provider: account?.provider || "Unknown",
           providerId: account?.providerAccountId || "",
-        });
+        }).returning();
+        
+        user.id = newUser[0].id
       }
-
+      else {
+        user.id = existingUser.id
+      }
       return true;
     },
-    async session({session, token}) {
-      if(session.user && token.id) {
+    async session({ session, token }) {
+      if (session.user && token.id) {
         session.user.id = token.id as string;
       }
       return session;

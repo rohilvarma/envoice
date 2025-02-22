@@ -1,14 +1,13 @@
 import {
   ChartColumn,
+  CircleUser,
   House,
   LucideIcon,
-  LucideProps,
   Receipt,
   Settings,
   Users,
   Zap,
 } from "lucide-react";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 type FeatureCard = {
   title: string;
@@ -16,12 +15,11 @@ type FeatureCard = {
   icon: LucideIcon;
 };
 
-type SidebarLinks = {
-  title: string;
-  url: string;
-  icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-  >;
+export const GLOBAL_LABELS = {
+  ACTIONS: {
+    SAVE: "Save",
+    CANCEL: "Cancel",
+  },
 };
 
 export const ROUTES = {
@@ -32,6 +30,7 @@ export const ROUTES = {
     INVOICES: "/dashboard/invoices",
     CLIENTS: "/dashboard/clients",
     SETTINGS: "/dashboard/settings",
+    PROFILE: "/dashboard/profile",
   },
 };
 
@@ -70,40 +69,54 @@ export const LANDING_PAGE_CONTENT = {
 };
 
 export const SETTINGS_PAGE_CONTENT = {
-  TITLE: 'Settings',
-  DESCRIPTION: 'Manage your account settings and preferences.',
+  TITLE: "Settings",
+  DESCRIPTION: "Manage your account settings and preferences.",
   COMPANY_INFO_FORM: {
     TITLE: "Company Information",
     DESCRIPTION: "This information will be displayed on your invoices.",
     NAME: "Company Name",
     ADDRESS: "Address",
-    GST_NO: "GST Number"
+    GST_NO: "GST Number",
   },
   SAVE: "Save Changes",
   DELETE: "Delete Profile",
   DELETE_ACCOUNT_TITLE: "Delete Account",
-  DELETE_ACCOUNT_DESCRIPTION: "Once you delete your account, there is no going back. Please be certain."
-}
+  DELETE_ACCOUNT_DESCRIPTION:
+    "Once you delete your account, there is no going back. Please be certain.",
+};
 
-export const SIDEBAR_LINKS = [
-  {
-    title: "Dashboard",
-    url: ROUTES.DASHBOARD.ROOT,
-    icon: House,
-  },
-  {
-    title: "Invoices",
-    url: ROUTES.DASHBOARD.INVOICES,
-    icon: Receipt,
-  },
-  {
-    title: "Clients",
-    url: ROUTES.DASHBOARD.CLIENTS,
-    icon: Users,
-  },
-  {
-    title: "Settings",
-    url: ROUTES.DASHBOARD.SETTINGS,
-    icon: Settings,
-  },
-] as SidebarLinks[];
+export const SIDEBAR_LINKS = {
+  NAVIGATION: [
+    {
+      title: "Dashboard",
+      url: ROUTES.DASHBOARD.ROOT,
+      icon: House,
+    },
+    {
+      title: "Invoices",
+      url: ROUTES.DASHBOARD.INVOICES,
+      icon: Receipt,
+    },
+    {
+      title: "Clients",
+      url: ROUTES.DASHBOARD.CLIENTS,
+      icon: Users,
+    },
+  ],
+  ACCOUNT: [
+    {
+      title: "Profile",
+      url: ROUTES.DASHBOARD.PROFILE,
+      icon: CircleUser,
+    },
+    {
+      title: "Settings",
+      url: ROUTES.DASHBOARD.SETTINGS,
+      icon: Settings,
+    },
+  ],
+};
+
+export const CLIENT_PAGE_CONTENT = {
+  ADD_NEW_CLIENT: "Get started with a new client",
+};

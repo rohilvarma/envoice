@@ -2,6 +2,8 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -30,20 +32,40 @@ export function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="flex flex-col justify-between">
         <SidebarGroup>
-          <SidebarMenu>
-            {SIDEBAR_LINKS.map((link, index) => (
-              <SidebarMenuItem key={index}>
-                <Link href={link.url} className="flex items-center gap-2">
-                  <SidebarMenuButton tooltip={link.title}>
-                    {link.icon && <link.icon />}
-                    <span>{link.title}</span>
-                  </SidebarMenuButton>
-                </Link>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {SIDEBAR_LINKS.NAVIGATION.map((link, index) => (
+                <SidebarMenuItem key={index}>
+                  <Link href={link.url} className="flex items-center gap-2">
+                    <SidebarMenuButton tooltip={link.title}>
+                      {link.icon && <link.icon />}
+                      <span>{link.title}</span>
+                    </SidebarMenuButton>
+                  </Link>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {SIDEBAR_LINKS.ACCOUNT.map((link, index) => (
+                <SidebarMenuItem key={index}>
+                  <Link href={link.url} className="flex items-center gap-2">
+                    <SidebarMenuButton tooltip={link.title}>
+                      {link.icon && <link.icon />}
+                      <span>{link.title}</span>
+                    </SidebarMenuButton>
+                  </Link>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
