@@ -12,12 +12,13 @@ import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NewClient, newClient } from "@/zod/newClient.schema";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 import { Check } from "lucide-react";
-import { Label } from "../ui/label";
+import { Label } from "./ui/label";
 import { insertClient } from "@/app/dashboard/clients/actions";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const AddClient = () => {
   const {
@@ -28,13 +29,17 @@ const AddClient = () => {
   } = useForm<NewClient>({
     resolver: zodResolver(newClient),
   });
-  
+
   const [open, setOpen] = useState(false);
-  
+
   const addNewClient = async (data: NewClient) => {
-    await insertClient(data);
+    const response = await insertClient(data);
     setOpen((prev) => !prev);
-    reset();
+
+    if (response?.success) {
+      reset();
+      toast("New client has been successfully created!");
+    }
   };
 
   return (

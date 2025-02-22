@@ -119,4 +119,5 @@ export const SIDEBAR_LINKS = {
 
 export const CLIENT_PAGE_CONTENT = {
   ADD_NEW_CLIENT: "Get started with a new client",
+  DELETE_CLIENT: "Delete Client"
 };

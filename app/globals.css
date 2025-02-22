@@ -91,4 +91,15 @@ body {
     .container {
         @apply w-[90%] md:max-w-6xl mx-auto;
     }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 } 

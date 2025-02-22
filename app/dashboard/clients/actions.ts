@@ -5,7 +5,7 @@ import { clients, InsertClient } from "@/db/schema";
 import { authConfig } from "@/lib/auth";
 import { ROUTES } from "@/lib/constants";
 import { NewClient } from "@/zod/newClient.schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 
@@ -26,9 +26,21 @@ export const insertClient = async (data: NewClient) => {
   };
   try {
     await dbManager.getDb.insert(clients).values(newClientData);
-    revalidatePath(ROUTES.DASHBOARD.CLIENTS)
-    return {success:true}
+    revalidatePath(ROUTES.DASHBOARD.CLIENTS);
+    return { success: true };
   } catch (err) {
     console.error("Error encountered while creating a client!", err);
+  }
+};
+
+export const deleteClient = async (clientId: string, userId: string) => {
+  try {
+    await dbManager.getDb
+      .delete(clients)
+      .where(and(eq(clients.id, clientId), eq(clients.userId, userId)));
+    revalidatePath(ROUTES.DASHBOARD.CLIENTS);
+    return { success: true };
+  } catch (err) {
+    console.error("Error encountered while deleting a client!", err);
   }
 };

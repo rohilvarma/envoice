@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import AppBreadcrumb from "@/components/app-breadcrumb";
 import SignoutButton from "@/components/SignoutButton";
 import ThemeToggle from "@/components/ThemeToggle";
+import { Toaster } from "@/components/ui/sonner"
 
 export default function DashboardLayout({
   children,
@@ -24,6 +25,7 @@ export default function DashboardLayout({
         <Separator />
         <div className="mx-5 mt-5 md:mx-6 md:mt-6">
           {children} 
+          <Toaster />
         </div> 
       </section>
     </SidebarProvider>
