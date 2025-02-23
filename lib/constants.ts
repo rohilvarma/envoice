@@ -15,20 +15,19 @@ type FeatureCard = {
   icon: LucideIcon;
 };
 
-export const GLOBAL_LABELS = {
-  ACTIONS: {
-    SAVE: "Save",
-    CANCEL: "Cancel",
-  },
-};
-
 export const ROUTES = {
   LANDING: "/",
   LOGIN: "/login",
   DASHBOARD: {
     ROOT: "/dashboard",
-    INVOICES: "/dashboard/invoices",
-    CLIENTS: "/dashboard/clients",
+    INVOICES: {
+      ROOT: "/dashboard/invoices",
+      NEW: "/dashboard/invoices/new",
+    },
+    CLIENTS: {
+      ROOT: "/dashboard/clients",
+      NEW: "/dashboard/clients/new",
+    },
     SETTINGS: "/dashboard/settings",
     PROFILE: "/dashboard/profile",
   },
@@ -94,12 +93,12 @@ export const SIDEBAR_LINKS = {
     },
     {
       title: "Invoices",
-      url: ROUTES.DASHBOARD.INVOICES,
+      url: ROUTES.DASHBOARD.INVOICES.ROOT,
       icon: Receipt,
     },
     {
       title: "Clients",
-      url: ROUTES.DASHBOARD.CLIENTS,
+      url: ROUTES.DASHBOARD.CLIENTS.ROOT,
       icon: Users,
     },
   ],
@@ -119,5 +118,30 @@ export const SIDEBAR_LINKS = {
 
 export const CLIENT_PAGE_CONTENT = {
   ADD_NEW_CLIENT: "Get started with a new client",
-  DELETE_CLIENT: "Delete Client"
+  DELETE_CLIENT: "Delete Client",
+  NEW_CLIENT: {
+    BASIC_INFO: {
+      TITLE: "Basic Information",
+      DESCRIPTION: "Enter the client's basic contact information",
+      FORM_LABELS: {
+        COMPANY_NAME: "Company Name",
+        EMAIL: "Email",
+        PHONE: "Phone",
+        GST_NO: "GST Number",
+        WEBSITE: "Website",
+      },
+    },
+    BILLING_ADDRESS: {
+      TITLE: "Billing Address",
+      DESCRIPTION: "Provide the client's billing address",
+      FORM_LABELS: {
+        STREET_ADDRESS: "Address",
+        CITY: "City",
+        STATE: "State",
+        ZIP_CODE: "Zip Code",
+      },
+    },
+    CREATE_CLIENT: "Create Client",
+    CANCEL: "Cancel"
+  },
 };

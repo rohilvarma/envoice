@@ -22,6 +22,20 @@
       "when": 1740035779178,
       "tag": "0002_panoramic_butterfly",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1740296594217,
+      "tag": "0003_striped_anthem",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1740296979233,
+      "tag": "0004_overrated_the_santerians",
+      "breakpoints": true
     }
   ]
 }

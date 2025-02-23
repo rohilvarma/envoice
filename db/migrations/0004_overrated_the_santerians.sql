@@ -1,0 +1,2 @@
+ALTER TABLE "clients" ADD COLUMN "status" smallint DEFAULT 1 NOT NULL;--> statement-breakpoint
+ALTER TABLE "clients" ADD CONSTRAINT "clients_status_client_status_id_fk" FOREIGN KEY ("status") REFERENCES "public"."client_status"("id") ON DELETE restrict ON UPDATE no action;

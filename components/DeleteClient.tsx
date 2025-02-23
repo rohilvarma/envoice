@@ -18,12 +18,14 @@ type DeleteClientProps = {
 
 const DeleteClient = ({ clientId, userId }: DeleteClientProps) => {
   const deleteClientById = async () => {
-    const response = await deleteClient(clientId, userId);
+    const { success, error } = await deleteClient(clientId, userId);
 
-    if (response?.success) {
-      toast("Client has been successfully deleted!");
+    if (success) {
+      toast.success("Client has been successfully deleted!");
     } else {
-      toast("Error encountered while deleting client.");
+      toast.error("Error encountered while deleting client.", {
+        description: `${error}`,
+      });
     }
   };
 
