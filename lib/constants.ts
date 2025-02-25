@@ -27,6 +27,7 @@ export const ROUTES = {
     CLIENTS: {
       ROOT: "/dashboard/clients",
       NEW: "/dashboard/clients/new",
+      DETAIL: (id: string): string => `/dashboard/clients/${id}`,
     },
     SETTINGS: "/dashboard/settings",
     PROFILE: "/dashboard/profile",

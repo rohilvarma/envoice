@@ -1,6 +1,5 @@
 "use client";
 
-import { Trash2 } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -8,7 +7,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CLIENT_PAGE_CONTENT } from "@/lib/constants";
-import { deleteClient } from "@/app/dashboard/clients/actions";
+import { Trash2 } from "lucide-react";
+
+import { deleteClient } from "@/lib/actions/clientActions";
 import { toast } from "sonner";
 
 type DeleteClientProps = {
@@ -36,7 +37,7 @@ const DeleteClient = ({ clientId, userId }: DeleteClientProps) => {
           <Trash2
             size={17}
             onClick={() => deleteClientById()}
-            className="hover:text-red-500 duration-150 ease-linear"
+            className="hover:text-red-500 duration-150 ease-linear cursor-pointer"
           />
         </TooltipTrigger>
         <TooltipContent>

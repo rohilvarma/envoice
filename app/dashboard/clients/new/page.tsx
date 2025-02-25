@@ -16,11 +16,11 @@ import { ArrowLeft, Ban, Check } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
+import { insertClient } from "@/lib/actions/clientActions";
 import { NewClientInput, newClientSchema } from "@/lib/validations/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { insertClient } from "../actions";
 
 const NewClient = () => {
   const router = useRouter();
@@ -35,29 +35,28 @@ const NewClient = () => {
   });
 
   /**
-  * Adds a new client to the system and handles the response feedback.
-  * 
-  * @param data - The new client's data conforming to NewClientInput type.
-  * @returns Promise<void>
-  */
+   * Adds a new client to the system and handles the response feedback.
+   *
+   * @param data - The new client's data conforming to NewClientInput type.
+   * @returns Promise<void>
+   */
   const addNewClient = async (data: NewClientInput): Promise<void> => {
-    const {success, error} = await insertClient(data);
-    if(success) {
-      toast.success('New Client has been successfully added!')
-    }
-    else {
+    const { success, error } = await insertClient(data);
+    if (success) {
+      toast.success("New Client has been successfully added!");
+    } else {
       toast.error("Error encountered while adding new client.", {
-        description: `${error}`
-      })
+        description: `${error}`,
+      });
     }
     reset();
-    router.push(ROUTES.DASHBOARD.CLIENTS.ROOT)
+    router.push(ROUTES.DASHBOARD.CLIENTS.ROOT);
   };
 
   /**
-  * Cancels the current form by resetting the form and going back to the previous page.
-  * @returns void
-  */
+   * Cancels the current form by resetting the form and going back to the previous page.
+   * @returns void
+   */
   const cancelNewClient = (): void => {
     router.back();
     reset(
@@ -81,7 +80,7 @@ const NewClient = () => {
           </p>
         </div>
       </section>
-      <section id="details" className="md:max-w-4xl">
+      <section id="details" className="md:max-w-3xl mb-12">
         <form
           onSubmit={handleSubmit(addNewClient)}
           className="flex flex-col gap-4"
@@ -98,7 +97,7 @@ const NewClient = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-2 gap-4">
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {
                     CLIENT_PAGE_CONTENT.NEW_CLIENT.BASIC_INFO.FORM_LABELS
@@ -110,7 +109,7 @@ const NewClient = () => {
                   {errors.companyName?.message?.toString()}
                 </small>
               </div>
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {CLIENT_PAGE_CONTENT.NEW_CLIENT.BASIC_INFO.FORM_LABELS.EMAIL}
                 </Label>
@@ -119,7 +118,7 @@ const NewClient = () => {
                   {errors.email?.message?.toString()}
                 </small>
               </div>
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {CLIENT_PAGE_CONTENT.NEW_CLIENT.BASIC_INFO.FORM_LABELS.PHONE}
                 </Label>
@@ -128,7 +127,7 @@ const NewClient = () => {
                   {errors.phone?.message?.toString()}
                 </small>
               </div>
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {CLIENT_PAGE_CONTENT.NEW_CLIENT.BASIC_INFO.FORM_LABELS.GST_NO}
                 </Label>
@@ -137,7 +136,7 @@ const NewClient = () => {
                   {errors.gstNo?.message?.toString()}
                 </small>
               </div>
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {
                     CLIENT_PAGE_CONTENT.NEW_CLIENT.BASIC_INFO.FORM_LABELS
@@ -175,7 +174,7 @@ const NewClient = () => {
                   {errors.address?.message?.toString()}
                 </small>
               </div>
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {
                     CLIENT_PAGE_CONTENT.NEW_CLIENT.BILLING_ADDRESS.FORM_LABELS
@@ -187,7 +186,7 @@ const NewClient = () => {
                   {errors.city?.message?.toString()}
                 </small>
               </div>
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {
                     CLIENT_PAGE_CONTENT.NEW_CLIENT.BILLING_ADDRESS.FORM_LABELS
@@ -199,7 +198,7 @@ const NewClient = () => {
                   {errors.state?.message?.toString()}
                 </small>
               </div>
-              <div className="">
+              <div className="col-span-2 md:col-span-1">
                 <Label htmlFor="" className="font-bold mb-2">
                   {
                     CLIENT_PAGE_CONTENT.NEW_CLIENT.BILLING_ADDRESS.FORM_LABELS

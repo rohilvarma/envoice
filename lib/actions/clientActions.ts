@@ -1,7 +1,7 @@
 "use server";
 
 import dbManager from "@/db";
-import { clients, InsertClient } from "@/db/schema";
+import { clients, InsertClient, SelectClients } from "@/db/schema";
 import { authConfig } from "@/lib/auth";
 import { ROUTES } from "@/lib/constants";
 import { NewClientInput } from "@/lib/validations/schema";
@@ -9,7 +9,17 @@ import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 
-export const fetchClients = async () => {
+type ResponseType = {
+  success: boolean;
+  error?: unknown;
+};
+
+/**
+ * Fetches all clients associated with the current user.
+ *
+ * @returns {Promise<SelectClients[]>} Array of client data
+ */
+export const fetchClients = async (): Promise<SelectClients[]> => {
   const session = await getServerSession(authConfig);
   const allClients = await dbManager.getDb
     .select()
@@ -28,7 +38,7 @@ export const fetchClients = async () => {
  */
 export const insertClient = async (
   data: NewClientInput,
-): Promise<{ success: boolean; error?: unknown }> => {
+): Promise<ResponseType> => {
   const session = await getServerSession(authConfig);
   const newClientData: InsertClient = {
     ...data,
@@ -55,7 +65,7 @@ export const insertClient = async (
 export const deleteClient = async (
   clientId: string,
   userId: string,
-): Promise<{ success: boolean; error?: unknown }> => {
+): Promise<ResponseType> => {
   try {
     await dbManager.getDb
       .delete(clients)
@@ -64,6 +74,21 @@ export const deleteClient = async (
     return { success: true };
   } catch (err) {
     console.error("Error encountered while deleting a client!", err);
+    return { success: false, error: err };
+  }
+};
+
+export const getClientName = async (
+  clientId: string,
+): Promise<string | ResponseType> => {
+  try {
+    const response = await dbManager.getDb
+      .select()
+      .from(clients)
+      .where(eq(clients.id, clientId));
+    return response[0].companyName;
+  } catch (err) {
+    console.error("Error encountered while fetching client name!", err);
     return { success: false, error: err };
   }
 };

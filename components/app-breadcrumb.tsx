@@ -10,9 +10,34 @@ import {
 } from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
 import { SidebarTrigger } from "./ui/sidebar";
+import { getClientName } from "@/lib/actions/clientActions";
+import { toast } from "sonner";
 
 const AppBreadcrumb = () => {
   const currentPath = usePathname().split("/").slice(1);
+  
+  const getLastBreadCrumb = async (activePage: string) => {
+    // Test if the activePage is a number
+    // if(/^\d+$/.test(activePage)) {
+    //   if(currentPath.includes('clients')) {
+    //     const response = await getClientName(activePage);
+    //     if(typeof response === 'string') {
+    //       return response[0].toUpperCase() + response.slice(1);
+    //     }
+    //     else {
+    //       toast.error('Failed to fetch client name')
+    //       return 'Unknown Client';
+    //     }
+    //   }
+    //   else if (currentPath.includes('invoices')) {
+    //     return 'Invoices'
+    //   }
+    // }
+    // else {
+    //   // Convert the first letter to uppercase and append with the rest of the string.
+    //   return activePage[0].toUpperCase() + activePage.slice(1);
+    // }
+  }
 
   return (
     <Breadcrumb className="p-3 flex items-center gap-2">
@@ -39,7 +64,7 @@ const AppBreadcrumb = () => {
             elements.push(
               <BreadcrumbItem key={index}>
                 <BreadcrumbPage>
-                  { path[0].toUpperCase() + path.slice(1) }
+                  { getLastBreadCrumb(path) }
                 </BreadcrumbPage>
               </BreadcrumbItem>
             )
