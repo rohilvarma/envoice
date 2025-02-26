@@ -12,33 +12,53 @@ import { usePathname } from "next/navigation";
 import { SidebarTrigger } from "./ui/sidebar";
 import { getClientName } from "@/lib/actions/clientActions";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
 
 const AppBreadcrumb = () => {
   const currentPath = usePathname().split("/").slice(1);
+  const [lastBreadcrumb, setLastBreadcrumb] = useState<string | null>(null);
   
-  const getLastBreadCrumb = async (activePage: string) => {
-    // Test if the activePage is a number
-    // if(/^\d+$/.test(activePage)) {
-    //   if(currentPath.includes('clients')) {
-    //     const response = await getClientName(activePage);
-    //     if(typeof response === 'string') {
-    //       return response[0].toUpperCase() + response.slice(1);
-    //     }
-    //     else {
-    //       toast.error('Failed to fetch client name')
-    //       return 'Unknown Client';
-    //     }
-    //   }
-    //   else if (currentPath.includes('invoices')) {
-    //     return 'Invoices'
-    //   }
-    // }
-    // else {
-    //   // Convert the first letter to uppercase and append with the rest of the string.
-    //   return activePage[0].toUpperCase() + activePage.slice(1);
-    // }
+  /**
+  * Tests whether a string is a valid UUID.
+  * 
+  * @param uuid - The UUID to be validated.
+  * @returns boolean - Indicates whether the provided string is a valid UUID.
+  */
+  const isUUID = (uuid: string): boolean => {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(uuid);
   }
 
+  useEffect(() => {    
+    const getLastBreadCrumb = async (activePage: string) => {
+      // Test if the activePage is a UUID
+      if(isUUID(activePage)) {
+        if(currentPath.includes('clients')) {
+          const response = await getClientName(activePage);
+          if(typeof response === 'string') {
+            return response[0].toUpperCase() + response.slice(1);
+          }
+          else {
+            toast.error('Failed to fetch client name')
+            return 'Unknown Client';
+          }
+        }
+        else if (currentPath.includes('invoices')) {
+          return 'Invoices'
+        }
+      }
+      // Convert the first letter to uppercase and append with the rest of the string.
+      return activePage[0].toUpperCase() + activePage.slice(1);
+    }
+    
+    const fetchLastBreadcrumb = async () => {
+      const breadcrumb = await getLastBreadCrumb(currentPath[currentPath.length - 1]);
+      setLastBreadcrumb(breadcrumb)
+    };
+    
+    fetchLastBreadcrumb();
+  }, [currentPath])
+  
+  
   return (
     <Breadcrumb className="p-3 flex items-center gap-2">
       <SidebarTrigger />
@@ -64,7 +84,7 @@ const AppBreadcrumb = () => {
             elements.push(
               <BreadcrumbItem key={index}>
                 <BreadcrumbPage>
-                  { getLastBreadCrumb(path) }
+                  { lastBreadcrumb }
                 </BreadcrumbPage>
               </BreadcrumbItem>
             )
