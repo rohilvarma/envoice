@@ -78,9 +78,13 @@ export const deleteClient = async (
   }
 };
 
-export const getClientName = async (
-  clientId: string,
-): Promise<string | ResponseType> => {
+/**
+ * Retrieves the name of a client from the database.
+ *
+ * @param clientId - The ID of the client to retrieve the name for.
+ * @returns {Promise<string>} The name of the client.
+ */
+export const getClientName = async (clientId: string): Promise<string> => {
   try {
     const response = await dbManager.getDb
       .select()
@@ -89,6 +93,6 @@ export const getClientName = async (
     return response[0].companyName;
   } catch (err) {
     console.error("Error encountered while fetching client name!", err);
-    return { success: false, error: err };
+    return clientId;
   }
 };
